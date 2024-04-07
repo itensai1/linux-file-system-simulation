@@ -1,0 +1,17 @@
+type  path
+----  ----
+D 	 /
+D 	 /home
+D 	 /home/user1
+D 	 /home/user1/codes
+D 	 /home/user1/codes/cpp
+F 	 /home/user1/codes/cpp/proj.cpp
+D 	 /home/user1/codes/python
+F 	 /home/user1/codes/python/proj.py
+D 	 /home/user1/codes/java
+F 	 /home/user1/codes/java/proj.java
+F 	 /home/user1/INFO
+D 	 /home/user2
+D 	 /home/user2/uni
+F 	 /home/user2/uni/sec1
+F 	 /home/user2/uni/sec2
