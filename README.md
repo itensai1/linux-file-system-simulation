@@ -6,12 +6,12 @@
   : make a new directory for a given pathname
 - rmdir pathname 
   : remove the directory, if it is empty.
-  - cd [pathname]
-    : change the current working directory to pathname, or to / if no pathname.
+- cd [pathname]
+  : change the current working directory to pathname, or to / if no pathname.
 - ls [pathname]
   : list the directory contents of pathname or the current working directory
-  - pwd
-    : print the (absolute) pathname of the current working directory.
+- pwd
+  : print the (absolute) pathname of the current working directory.
 - touch pathname 
   : make a new file for a given pathname.
 - rm pathname
@@ -25,4 +25,5 @@
 - quit
   : terminate the program.
 
-  > You can use **sysTree** to construct a file system tree.
+
+  > **Note:** You can use **sysTree** to construct a file system tree.
