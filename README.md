@@ -6,7 +6,7 @@
 
 
 - mkdir pathname 
-  : - make a new directory for a given pathname
+  : make a new directory for a given pathname
 - rmdir pathname 
   : remove the directory, if it is empty.
 - cd [pathname]
