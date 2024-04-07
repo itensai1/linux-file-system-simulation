@@ -1,4 +1,6 @@
-### **A simulation for linux file system with the following commands**
+# linux-file-system-simulation
+
+## A simulation for linux file system with the following commands
 
 - mkdir pathname 
   : make a new directory for a given pathname
