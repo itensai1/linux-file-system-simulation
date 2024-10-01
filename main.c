@@ -52,12 +52,15 @@ void mkdir(char *path)
     tmp = cwd;
     if (path[0] == '/')
         tmp = root;
+    
     char *s = strtok(path, "/");
     char *base = s;
+
     while (s)
     {
         base = s;
         s = strtok(0, "/");
+
         if (s)
         {
             if (!strcmp("..", base))
@@ -67,32 +70,37 @@ void mkdir(char *path)
             }
             else if (!strcmp(".", base))
             {
-                goto nextToken;
+                continue; 
             }
             else
             {
+                int found = 0;
                 for (int i = 0; i < tmp->childrenNum; ++i)
                 {
                     if (!strcmp(tmp->children[i]->name, base))
                     {
+                        found = 1;
                         if (tmp->children[i]->type == 'D')
                         {
                             tmp = tmp->children[i];
-                            goto nextToken;
                         }
                         else if (tmp->children[i]->type == 'F')
                         {
                             printf("'%s' is not a directory\n", tmp->children[i]->name);
                             return;
                         }
+                        break;
                     }
                 }
-                printf("No such file or directory\n");
-                return;
+                if (!found)
+                {
+                    printf("No such file or directory\n");
+                    return;
+                }
             }
         }
-    nextToken:
     }
+
     if (base)
     {
         if (tmp->childrenNum == MAX_CHILDREN)
@@ -110,17 +118,21 @@ void mkdir(char *path)
     }
 }
 
+
 void rmdir(char *path)
 {
     tmp = cwd;
     if (path[0] == '/')
         tmp = root;
+    
     char *s = strtok(path, "/");
     char *base = s;
+
     while (s)
     {
         base = s;
         s = strtok(0, "/");
+
         if (s)
         {
             if (!strcmp("..", base))
@@ -130,32 +142,37 @@ void rmdir(char *path)
             }
             else if (!strcmp(".", base))
             {
-                goto nextToken;
+                continue;  
             }
             else
             {
+                int found = 0;
                 for (int i = 0; i < tmp->childrenNum; ++i)
                 {
                     if (!strcmp(tmp->children[i]->name, base))
                     {
+                        found = 1;
                         if (tmp->children[i]->type == 'D')
                         {
                             tmp = tmp->children[i];
-                            goto nextToken;
                         }
                         else if (tmp->children[i]->type == 'F')
                         {
                             printf("'%s' is not a directory\n", tmp->children[i]->name);
                             return;
                         }
+                        break;  
                     }
                 }
-                printf("No such file or directory\n");
-                return;
+                if (!found)
+                {
+                    printf("No such file or directory\n");
+                    return;
+                }
             }
         }
-    nextToken:
     }
+
     if (base)
     {
         int index = -1;
@@ -203,12 +220,15 @@ void touch(char *path)
     tmp = cwd;
     if (path[0] == '/')
         tmp = root;
+    
     char *s = strtok(path, "/");
     char *base = s;
+
     while (s)
     {
         base = s;
         s = strtok(0, "/");
+
         if (s)
         {
             if (!strcmp("..", base))
@@ -218,32 +238,37 @@ void touch(char *path)
             }
             else if (!strcmp(".", base))
             {
-                goto nextToken;
+                continue;
             }
             else
             {
+                int found = 0;
                 for (int i = 0; i < tmp->childrenNum; ++i)
                 {
                     if (!strcmp(tmp->children[i]->name, base))
                     {
+                        found = 1;
                         if (tmp->children[i]->type == 'D')
                         {
                             tmp = tmp->children[i];
-                            goto nextToken;
                         }
                         else if (tmp->children[i]->type == 'F')
                         {
                             printf("'%s' is not a directory\n", tmp->children[i]->name);
                             return;
                         }
+                        break; 
                     }
                 }
-                printf("No such file or directory\n");
-                return;
+                if (!found)
+                {
+                    printf("No such file or directory\n");
+                    return;
+                }
             }
         }
-    nextToken:
     }
+
     if (base)
     {
         if (tmp->childrenNum == MAX_CHILDREN)
@@ -266,12 +291,15 @@ void rm(char *path)
     tmp = cwd;
     if (path[0] == '/')
         tmp = root;
+    
     char *s = strtok(path, "/");
     char *base = s;
+
     while (s)
     {
         base = s;
         s = strtok(0, "/");
+
         if (s)
         {
             if (!strcmp("..", base))
@@ -281,32 +309,37 @@ void rm(char *path)
             }
             else if (!strcmp(".", base))
             {
-                goto nextToken;
+                continue;  
             }
             else
             {
+                int found = 0;
                 for (int i = 0; i < tmp->childrenNum; ++i)
                 {
                     if (!strcmp(tmp->children[i]->name, base))
                     {
+                        found = 1;
                         if (tmp->children[i]->type == 'D')
                         {
                             tmp = tmp->children[i];
-                            goto nextToken;
                         }
                         else if (tmp->children[i]->type == 'F')
                         {
                             printf("'%s' is not a directory\n", tmp->children[i]->name);
                             return;
                         }
+                        break; 
                     }
                 }
-                printf("No such file or directory\n");
-                return;
+                if (!found)
+                {
+                    printf("No such file or directory\n");
+                    return;
+                }
             }
         }
-    nextToken:
     }
+
     if (base)
     {
         int index = -1;
@@ -378,30 +411,35 @@ void cd(char *path)
         }
         else if (!strcmp(".", base))
         {
-            goto nextToken;
+            continue;  
         }
         else
         {
+            int found = 0;
             for (int i = 0; i < tmp->childrenNum; ++i)
             {
                 if (!strcmp(tmp->children[i]->name, base))
                 {
+                    found = 1;
                     if (tmp->children[i]->type == 'D')
                     {
                         tmp = tmp->children[i];
-                        goto nextToken;
                     }
                     else if (tmp->children[i]->type == 'F')
                     {
                         printf("'%s' is not a directory\n", tmp->children[i]->name);
                         return;
                     }
+                    break;  
                 }
             }
-            printf("No such directory\n");
-            return;
+            if (!found)
+            {
+                printf("No such file or directory\n");
+                return;
+            }
         }
-    nextToken:
+
         base = strtok(0, "/");
     }
     cwd = tmp;
@@ -422,30 +460,35 @@ void ls(char *path)
         }
         else if (!strcmp(".", base))
         {
-            goto nextToken;
+            continue;  // Skip this token, it's the current directory
         }
         else
         {
+            int found = 0;
             for (int i = 0; i < tmp->childrenNum; ++i)
             {
                 if (!strcmp(tmp->children[i]->name, base))
                 {
+                    found = 1;
                     if (tmp->children[i]->type == 'D')
                     {
                         tmp = tmp->children[i];
-                        goto nextToken;
                     }
                     else if (tmp->children[i]->type == 'F')
                     {
                         printf("'%s' is not a directory\n", tmp->children[i]->name);
                         return;
                     }
+                    break;  // Directory found, stop checking other children
                 }
             }
-            printf("No such directory\n");
-            return;
+            if (!found)
+            {
+                printf("No such file or directory\n");
+                return;
+            }
         }
-    nextToken:
+
         base = strtok(0, "/");
     }
     if (!tmp->childrenNum)
